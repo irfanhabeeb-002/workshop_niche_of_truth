@@ -14,6 +14,16 @@ const Hero = () => {
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary to-accent/5" />
       
+      {/* Floating time card */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1, duration: 0.8 }}
+        className="absolute top-8 right-8 z-20 hidden lg:block"
+      >
+        <CurrentDateBadge />
+      </motion.div>
+      
       {/* Subtle animated orbs */}
       <motion.div
         className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/10 rounded-full blur-3xl"
@@ -79,14 +89,6 @@ const Hero = () => {
             Comprehensive study materials, lunch, and refreshments included.
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex items-center justify-center mb-12"
-          >
-            <CurrentDateBadge />
-          </motion.div>
 
           
           
