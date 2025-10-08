@@ -14,7 +14,7 @@ const Hero = () => {
         month: 'long', 
         day: 'numeric' 
       };
-      setCurrentDate(now.toLocaleDateString('en-US', options));
+      setCurrentDate(`Today, ${now.toLocaleDateString('en-US', options)}`);
     };
 
     updateDate();
