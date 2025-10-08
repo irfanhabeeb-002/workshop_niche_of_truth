@@ -19,6 +19,7 @@ const RegistrationForm = () => {
     designation: "",
     paymentMode: "",
   });
+  const [useSameAsPhone, setUseSameAsPhone] = useState(false);
 
   const keralaDistricts = [
     "Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod",
@@ -41,6 +42,15 @@ const RegistrationForm = () => {
       }
       return newData;
     });
+  };
+
+  const handleUseSameAsPhone = (checked: boolean) => {
+    setUseSameAsPhone(checked);
+    if (checked) {
+      setFormData(prev => ({ ...prev, whatsapp: prev.phone }));
+    } else {
+      setFormData(prev => ({ ...prev, whatsapp: "" }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -281,7 +291,21 @@ const RegistrationForm = () => {
                       onChange={handleChange}
                       className={inputClasses}
                       placeholder="Optional"
+                      disabled={useSameAsPhone}
                     />
+                    <div className="mt-2">
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={useSameAsPhone}
+                          onChange={(e) => handleUseSameAsPhone(e.target.checked)}
+                          className="w-4 h-4 text-primary focus:ring-primary rounded"
+                        />
+                        <span className="text-sm text-muted-foreground">
+                          Same as phone number
+                        </span>
+                      </label>
+                    </div>
                   </div>
                 </div>
 
