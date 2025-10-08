@@ -110,11 +110,13 @@ const RegistrationForm = () => {
       
       const response = await fetch(submitUrl, {
         method: "POST",
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
+      
 
       if (response.ok) {
         setIsSuccess(true);
