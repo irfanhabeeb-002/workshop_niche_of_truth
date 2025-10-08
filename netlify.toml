@@ -4,7 +4,7 @@
   node_version = "18"
 
 [build.environment]
-  VITE_SUBMIT_URL = "https://script.google.com/macros/s/AKfycbyX29rezDR4D9-nmSxY1OfaC8fvRtzg1YdVI8dY7oKhhdPYJleDDAxQWxJdQ3diKjHzBA/exec"
+  VITE_SUBMIT_URL = "https://script.google.com/macros/s/AKfycbw29TxNEwm0ATk9DxeXcbj9eyHEY58tHexqZm3r_Sp94gkaWe6sK7G5zjXS8RQ3qGaqCQ/exec"
   SECRETS_SCAN_OMIT_KEYS = "VITE_SUBMIT_URL"
 
 [[redirects]]

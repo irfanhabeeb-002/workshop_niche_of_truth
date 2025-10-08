@@ -93,7 +93,12 @@ const RegistrationForm = () => {
     setIsSubmitting(true);
 
     try {
-      const submitUrl = import.meta.env.VITE_SUBMIT_URL || "https://script.google.com/macros/s/AKfycbyX29rezDR4D9-nmSxY1OfaC8fvRtzg1YdVI8dY7oKhhdPYJleDDAxQWxJdQ3diKjHzBA/exec";
+      // Get the submit URL from environment variable
+      const submitUrl = import.meta.env.VITE_SUBMIT_URL;
+      
+      if (!submitUrl) {
+        throw new Error("Submit URL not configured. Please set VITE_SUBMIT_URL environment variable.");
+      }
       
       const data = {
         name: formData.name,
@@ -108,6 +113,9 @@ const RegistrationForm = () => {
         paymentMode: formData.paymentMode
       };
       
+      console.log("Submitting to:", submitUrl);
+      console.log("Data:", data);
+      
       const response = await fetch(submitUrl, {
         method: "POST",
         mode: "cors",
@@ -118,7 +126,11 @@ const RegistrationForm = () => {
       });
       
 
-      if (response.ok) {
+      // Parse the JSON response
+      const result = await response.json();
+      console.log("Response:", result);
+      
+      if (response.ok && result.success) {
         setIsSuccess(true);
         setFormData({
           name: "",
@@ -133,13 +145,14 @@ const RegistrationForm = () => {
           paymentMode: "",
         });
       } else {
-        throw new Error("Submission failed");
+        throw new Error(result.error || "Submission failed");
       }
     } catch (error) {
+      console.error("Submission error:", error);
       toast({
         variant: "destructive",
         title: "Submission Error",
-        description: "Something went wrong. Please try again.",
+        description: error instanceof Error ? error.message : "Something went wrong. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
