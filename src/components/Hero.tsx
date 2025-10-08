@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import CurrentDateBadge from "./CurrentDateBadge";
 
 const Hero = () => {
   
@@ -14,15 +13,6 @@ const Hero = () => {
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary to-accent/5" />
       
-      {/* Floating time card */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1, duration: 0.8 }}
-        className="absolute top-8 right-8 z-20 hidden lg:block"
-      >
-        <CurrentDateBadge />
-      </motion.div>
       
       {/* Subtle animated orbs */}
       <motion.div
