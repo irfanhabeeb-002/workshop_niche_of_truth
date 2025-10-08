@@ -53,6 +53,18 @@ const RegistrationForm = () => {
     }
   };
 
+  const isFormValid = () => {
+    const requiredFields = ['name', 'age', 'sex', 'district', 'phone', 'previousParticipant', 'designation', 'paymentMode'];
+    const hasAllRequired = requiredFields.every(field => formData[field as keyof typeof formData]);
+    
+    // Additional validation for Ernakulam zone
+    if (formData.district === "Ernakulam" && !formData.zone) {
+      return false;
+    }
+    
+    return hasAllRequired;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -81,7 +93,7 @@ const RegistrationForm = () => {
     setIsSubmitting(true);
 
     try {
-      const submitUrl = import.meta.env.VITE_SUBMIT_URL || "YOUR_WEB_APP_URL_HERE";
+      const submitUrl = import.meta.env.VITE_SUBMIT_URL || "https://script.google.com/macros/s/AKfycbyX29rezDR4D9-nmSxY1OfaC8fvRtzg1YdVI8dY7oKhhdPYJleDDAxQWxJdQ3diKjHzBA/exec";
       
       const data = {
         name: formData.name,
@@ -106,6 +118,18 @@ const RegistrationForm = () => {
 
       if (response.ok) {
         setIsSuccess(true);
+        setFormData({
+          name: "",
+          age: "",
+          sex: "",
+          district: "",
+          zone: "",
+          phone: "",
+          whatsapp: "",
+          previousParticipant: "",
+          designation: "",
+          paymentMode: "",
+        });
       } else {
         throw new Error("Submission failed");
       }
@@ -150,7 +174,7 @@ const RegistrationForm = () => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
               onSubmit={handleSubmit}
-              className="bg-card rounded-3xl p-8 sm:p-12 border border-border"
+              className="bg-gradient-to-br from-card/60 to-card/90 rounded-3xl p-8 sm:p-12 border border-border backdrop-blur-md"
               style={{ boxShadow: "var(--shadow-md)" }}
             >
               <div className="space-y-6">
@@ -407,9 +431,9 @@ const RegistrationForm = () => {
 
                 <motion.button
                   type="submit"
-                  disabled={isSubmitting}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={isSubmitting || !isFormValid()}
+                  whileHover={{ scale: isFormValid() && !isSubmitting ? 1.02 : 1 }}
+                  whileTap={{ scale: isFormValid() && !isSubmitting ? 0.98 : 1 }}
                   className="w-full mt-8 px-8 py-4 text-lg font-semibold text-primary-foreground bg-primary rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
@@ -455,7 +479,7 @@ const RegistrationForm = () => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold text-primary-foreground bg-primary rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-primary/30"
+                className="inline-flex items-center gap-2 px-8 py-4 text-base sm:text-lg font-semibold text-primary-foreground bg-primary rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-primary/30"
               >
                 Join WhatsApp Group
               </motion.a>
