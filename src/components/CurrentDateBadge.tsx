@@ -63,11 +63,11 @@ const CurrentDateBadge = () => {
 const StyledWrapper = styled.div`
   .card-time-cloud {
     position: relative;
-    border-radius: 1em;
-    width: 17.5em;
-    height: 8em;
+    border-radius: 0.6em;
+    width: 10em;
+    height: 4.5em;
     z-index: 2;
-    border: solid 0.15em var(--color1);
+    border: solid 0.1em var(--color1);
     transition: 0.5s all ease-in-out;
     box-shadow: 0em 0em rgb(0, 0, 0, 0.25);
     overflow: hidden;
@@ -76,10 +76,10 @@ const StyledWrapper = styled.div`
   }
 
   .card-time-cloud-front {
-    width: 20em;
-    height: 12.5em;
+    width: 12em;
+    height: 7em;
     background: rgb(228, 228, 228);
-    border-radius: 1em;
+    border-radius: 0.6em;
     position: absolute;
     z-index: 2;
     top: 95%;
@@ -89,10 +89,10 @@ const StyledWrapper = styled.div`
   }
 
   .card-time-cloud-back {
-    width: 20em;
-    height: 17.5em;
+    width: 12em;
+    height: 10em;
     background: var(--skycolor);
-    border-radius: 1em;
+    border-radius: 0.6em;
     position: absolute;
     z-index: 1;
     top: 57.5%;
@@ -102,8 +102,8 @@ const StyledWrapper = styled.div`
   }
 
   .card-time-cloud:hover {
-    margin-bottom: 1em;
-    box-shadow: 0em 1em rgb(237, 120, 42, 0.5);
+    margin-bottom: 0.5em;
+    box-shadow: 0em 0.5em rgb(237, 120, 42, 0.5);
   }
 
   .card-time-cloud:hover .card-time-cloud-front {
@@ -113,9 +113,9 @@ const StyledWrapper = styled.div`
   .card-time-cloud-back svg {
     position: absolute;
     z-index: 1;
-    top: -16.45em;
-    left: -7.5em;
-    width: 25em;
+    top: -9em;
+    left: -4em;
+    width: 14em;
     height: auto;
     opacity: 100%;
     animation: rotate-cloud 15s linear infinite;
@@ -139,9 +139,9 @@ const StyledWrapper = styled.div`
     color: var(--color1);
     position: absolute;
     z-index: 3;
-    top: 1.25em;
-    left: 0.5em;
-    font-size: 1.5em;
+    top: 0.7em;
+    left: 0.3em;
+    font-size: 0.8em;
     font-weight: bold;
     transition: 0.5s all ease-in-out;
   }
@@ -150,9 +150,9 @@ const StyledWrapper = styled.div`
     color: var(--color1);
     position: absolute;
     z-index: 3;
-    top: 3em;
-    left: 0.65em;
-    font-size: 1.25em;
+    top: 1.7em;
+    left: 0.4em;
+    font-size: 0.7em;
     transition: 0.5s all ease-in-out;
     font-weight: 500;
   }
@@ -161,45 +161,45 @@ const StyledWrapper = styled.div`
     color: var(--color1);
     position: absolute;
     z-index: 3;
-    top: 1.25em;
-    right: 0.5em;
-    font-size: 1.5em;
+    top: 0.7em;
+    right: 0.3em;
+    font-size: 0.8em;
     font-weight: bold;
     transition: 0.5s all ease-in-out;
   }
 
   .card-time-cloud:hover {
-    height: 15em;
+    height: 8em;
   }
 
   .card-time-cloud:hover .card-time-cloud-day {
-    top: 2.25em;
+    top: 1.3em;
   }
 
   .card-time-cloud:hover .card-time-cloud-day-number {
-    top: 4em;
+    top: 2.3em;
   }
 
   .card-time-cloud:hover .card-time-cloud-hour {
-    top: 1em;
-    font-size: 3em;
+    top: 0.6em;
+    font-size: 1.6em;
   }
 
   .card-time-cloud-icon svg {
     position: absolute;
     z-index: 4;
-    top: 4em;
-    right: 0.6em;
+    top: 2.3em;
+    right: 0.4em;
     transform: rotate(0deg);
-    width: 1.5em;
+    width: 0.9em;
     height: auto;
     transition: 0.5s all ease-in-out;
   }
 
   .card-time-cloud:hover .card-time-cloud-icon svg {
-    top: 7.25em;
-    right: -1.75em;
-    width: 7.5em;
+    top: 4em;
+    right: -1em;
+    width: 4.2em;
     height: auto;
     transform: rotate(-35deg);
   }
@@ -216,7 +216,7 @@ const StyledWrapper = styled.div`
 
   .card-time-cloud:active .card-time-cloud-icon svg {
     transition: 0.25s all ease-in-out;
-    top: 8em;
+    top: 4.5em;
     transform: rotate(-25deg);
     stroke: #4a4b55;
   }`;

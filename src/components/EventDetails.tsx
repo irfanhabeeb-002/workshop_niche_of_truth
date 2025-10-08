@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Calendar, Clock, MapPin, Users, IndianRupee, BookOpen } from "lucide-react";
 import { useState, useEffect } from "react";
-import CurrentDateBadge from "./CurrentDateBadge";
 
 const EventDetails = () => {
   const [nextDate, setNextDate] = useState("");
@@ -117,12 +116,9 @@ const EventDetails = () => {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
             Event Details
           </h2>
-          <div className="flex items-center justify-center gap-3">
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Everything you need to know about the workshop
-            </p>
-            <CurrentDateBadge />
-          </div>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Everything you need to know about the workshop
+          </p>
         </motion.div>
 
         <motion.div

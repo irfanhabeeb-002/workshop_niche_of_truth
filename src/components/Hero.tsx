@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import CurrentDateBadge from "./CurrentDateBadge";
 
 const Hero = () => {
   
@@ -77,6 +78,15 @@ const Hero = () => {
             Join us every 1st Sunday for a transformative learning experience.
             Comprehensive study materials, lunch, and refreshments included.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex items-center justify-center mb-12"
+          >
+            <CurrentDateBadge />
+          </motion.div>
 
           
           
