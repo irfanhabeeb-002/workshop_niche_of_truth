@@ -10,24 +10,15 @@ const EventDetails = () => {
       const now = new Date();
       const currentMonth = now.getMonth();
       const currentYear = now.getFullYear();
-      
-      // November 2025 is on 9th
-      if (currentMonth === 10 && currentYear === 2025) {
-        const novemberDate = new Date(2025, 10, 9);
-        if (novemberDate >= now) {
-          setNextDate("9 Nov 2025");
-          return;
-        }
-      }
-      
+
       // Start checking from current month
       let checkDate = new Date(currentYear, currentMonth, 1);
-      
+
       // Find first Sunday of current month
       while (checkDate.getDay() !== 0) {
         checkDate.setDate(checkDate.getDate() + 1);
       }
-      
+
       // If first Sunday has passed, get next month's first Sunday
       if (checkDate < now) {
         checkDate = new Date(currentYear, currentMonth + 1, 1);
@@ -35,11 +26,20 @@ const EventDetails = () => {
           checkDate.setDate(checkDate.getDate() + 1);
         }
       }
-      
+
+      // Override: For Nov 2025, show 9 NOV 2025 instead of 2 Nov 2025
+      if (
+        checkDate.getFullYear() === 2025 &&
+        checkDate.getMonth() === 10 && // November (0-indexed)
+        checkDate.getDate() === 2
+      ) {
+        checkDate = new Date(2025, 10, 9);
+      }
+
       const day = checkDate.getDate();
-      const month = checkDate.toLocaleString('default', { month: 'short' });
+      const month = checkDate.toLocaleString('default', { month: 'short' }).toUpperCase();
       const year = checkDate.getFullYear();
-      
+
       setNextDate(`${day} ${month} ${year}`);
     };
 
