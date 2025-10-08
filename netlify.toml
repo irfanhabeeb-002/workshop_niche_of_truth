@@ -1,11 +1,13 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  node_version = "18"
+
+[build.environment]
+  VITE_SUBMIT_URL = "https://script.google.com/macros/s/AKfycbyX29rezDR4D9-nmSxY1OfaC8fvRtzg1YdVI8dY7oKhhdPYJleDDAxQWxJdQ3diKjHzBA/exec"
+  SECRETS_SCAN_OMIT_KEYS = "VITE_SUBMIT_URL"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-[build.environment]
-  NODE_VERSION = "18"
