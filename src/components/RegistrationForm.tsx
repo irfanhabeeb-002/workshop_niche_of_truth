@@ -12,6 +12,7 @@ const RegistrationForm = () => {
     age: "",
     sex: "",
     district: "",
+    zone: "",
     phone: "",
     whatsapp: "",
     previousParticipant: "",
@@ -25,9 +26,21 @@ const RegistrationForm = () => {
     "Pathanamthitta", "Thiruvananthapuram", "Thrissur", "Wayanad"
   ];
 
+  const ernakulamZones = [
+    "Aluva", "Ernakulam", "Kakkanad", "Kochi", "Kothamangalam", 
+    "Muvattupuzha", "Palluruthi", "Paravoor", "Perumbavoor", "Vyppin", "Vyttila"
+  ];
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => {
+      const newData = { ...prev, [name]: value };
+      // Clear zone when district changes
+      if (name === 'district') {
+        newData.zone = '';
+      }
+      return newData;
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -41,6 +54,16 @@ const RegistrationForm = () => {
         variant: "destructive",
         title: "Missing Information",
         description: "Please fill in all required fields.",
+      });
+      return;
+    }
+
+    // Additional validation for Ernakulam zone
+    if (formData.district === "Ernakulam" && !formData.zone) {
+      toast({
+        variant: "destructive",
+        title: "Missing Information",
+        description: "Please select your zone in Ernakulam district.",
       });
       return;
     }
@@ -198,6 +221,34 @@ const RegistrationForm = () => {
                     ))}
                   </select>
                 </div>
+
+                {formData.district === "Ernakulam" && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <label htmlFor="zone" className={labelClasses}>
+                      Zone *
+                    </label>
+                    <select
+                      id="zone"
+                      name="zone"
+                      required
+                      value={formData.zone}
+                      onChange={handleChange}
+                      className={inputClasses}
+                    >
+                      <option value="">Select your zone</option>
+                      {ernakulamZones.map(zone => (
+                        <option key={zone} value={zone}>
+                          {zone}
+                        </option>
+                      ))}
+                    </select>
+                  </motion.div>
+                )}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
