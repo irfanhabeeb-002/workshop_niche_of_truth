@@ -81,21 +81,27 @@ const RegistrationForm = () => {
     setIsSubmitting(true);
 
     try {
-      const submitUrl = import.meta.env.VITE_SUBMIT_URL || "https://example.com/submit";
+      const submitUrl = import.meta.env.VITE_SUBMIT_URL || "YOUR_WEB_APP_URL_HERE";
       
-      // Add timestamp in D/M/YYYY format
-      const now = new Date();
-      const timestamp = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+      const data = {
+        name: formData.name,
+        age: formData.age,
+        sex: formData.sex,
+        district: formData.district,
+        zone: formData.district === "Ernakulam" ? formData.zone : "",
+        phone: formData.phone,
+        whatsapp: formData.whatsapp,
+        previousParticipation: formData.previousParticipant,
+        dawaDesignation: formData.designation,
+        paymentMode: formData.paymentMode
+      };
       
       const response = await fetch(submitUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          ...formData,
-          timestamp,
-        }),
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
