@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Calendar, Clock, MapPin, Users, IndianRupee, BookOpen } from "lucide-react";
 import { useState, useEffect } from "react";
+import CurrentDateBadge from "./CurrentDateBadge";
 
 const EventDetails = () => {
   const [nextDate, setNextDate] = useState("");
@@ -59,8 +60,8 @@ const EventDetails = () => {
     {
       icon: Clock,
       label: "Time",
-      value: "10:10 AM – 4:00 PM",
-      subtitle: "Full day workshop",
+      value: "10:10 AM – 4:04 PM",
+      subtitle: "One day workshop",
     },
     {
       icon: MapPin,
@@ -72,7 +73,7 @@ const EventDetails = () => {
       icon: Users,
       label: "Age Limit",
       value: "18 and above",
-      subtitle: "Open for all genders",
+      subtitle: "open for both males and females",
     },
     {
       icon: IndianRupee,
@@ -116,9 +117,12 @@ const EventDetails = () => {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
             Event Details
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to know about the workshop
-          </p>
+          <div className="flex items-center justify-center gap-3">
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              Everything you need to know about the workshop
+            </p>
+            <CurrentDateBadge />
+          </div>
         </motion.div>
 
         <motion.div

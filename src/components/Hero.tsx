@@ -1,27 +1,8 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Calendar } from "lucide-react";
-import { useState, useEffect } from "react";
+import { ArrowDown } from "lucide-react";
 
 const Hero = () => {
-  const [currentDate, setCurrentDate] = useState("");
-
-  useEffect(() => {
-    const updateDate = () => {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-      };
-      setCurrentDate(`Updated • ${now.toLocaleDateString('en-US', options)}`);
-    };
-
-    updateDate();
-    // Update every minute
-    const interval = setInterval(updateDate, 60000);
-    return () => clearInterval(interval);
-  }, []);
+  
 
   const scrollToForm = () => {
     document.getElementById("registration")?.scrollIntoView({ behavior: "smooth" });
@@ -97,15 +78,7 @@ const Hero = () => {
             Comprehensive study materials, lunch, and refreshments included.
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex items-center justify-center gap-2 text-sm text-muted-foreground/70 mb-12"
-          >
-            <Calendar className="w-4 h-4" />
-            <span>{currentDate}</span>
-          </motion.div>
+          
           
           <motion.button
             onClick={scrollToForm}
