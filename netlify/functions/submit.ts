@@ -44,11 +44,21 @@ export const handler = async (event: any) => {
     });
 
     const text = await upstreamResponse.text();
-    // Apps Script returns JSON string; try to pass-through as JSON
+    let jsonBody: unknown;
+    try {
+      jsonBody = JSON.parse(text);
+    } catch {
+      jsonBody = {
+        success: false,
+        error: "Upstream returned non-JSON",
+        raw: text.slice(0, 500),
+      };
+    }
+
     return {
-      statusCode: upstreamResponse.status,
+      statusCode: upstreamResponse.ok ? 200 : upstreamResponse.status,
       headers,
-      body: text,
+      body: JSON.stringify(jsonBody),
     };
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
