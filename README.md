@@ -8,6 +8,12 @@ npm i
 npm run dev
 ```
 
+For local submissions without CORS issues, run:
+```sh
+npx netlify-cli dev
+```
+This starts the site with Netlify Functions.
+
 #### Build
 ```sh
 npm run build
