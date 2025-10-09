@@ -99,19 +99,19 @@ const RegistrationForm = () => {
       if (!submitUrl) {
         throw new Error("Submit URL not configured. Please set VITE_SUBMIT_URL environment variable.");
       }
-      
       const data = {
         name: formData.name,
         age: formData.age,
         sex: formData.sex,
         district: formData.district,
-        zone: formData.district === "Ernakulam" ? formData.zone : "",
+        zone: formData.district === "Ernakulam" ? formData.zone : "nil", // nil for other districts
         phone: formData.phone,
         whatsapp: formData.whatsapp,
-        previousParticipation: formData.previousParticipant,
-        dawaDesignation: formData.designation,
-        paymentMode: formData.paymentMode
+        previous_camp: formData.previousParticipant, // map state to expected key
+        designation: formData.designation,          // matches state
+        payment_mode: formData.paymentMode          // map state to expected key
       };
+      
       
       console.log("Submitting to:", submitUrl);
       console.log("Data:", data);
