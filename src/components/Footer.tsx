@@ -12,10 +12,30 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="flex items-center gap-3"
           >
-            <h3 className="text-2xl font-bold text-foreground mb-4">
-              Niche Of Truth
-            </h3>
+            <div className="flex items-center justify-center w-12 h-12 rounded-xl overflow-hidden">
+              <img 
+                src="/icon.jpg" 
+                alt="Niche Of Truth Logo" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-foreground mb-1">
+                Niche Of Truth
+              </h3>
+              <p className="text-sm text-muted-foreground">Islamic Education</p>
+            </div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="md:col-span-2"
+          >
             <p className="text-muted-foreground leading-relaxed">
               Empowering individuals through knowledge and transformative Da'wa education.
             </p>

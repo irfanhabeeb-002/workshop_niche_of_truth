@@ -1,8 +1,9 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import useCountdown from "@/hooks/useCountdown";
 
 const Hero = () => {
-  
+  const { days, hours, minutes, seconds, nextWorkshop } = useCountdown();
 
   const scrollToForm = () => {
     document.getElementById("registration")?.scrollIntoView({ behavior: "smooth" });
@@ -79,6 +80,77 @@ const Hero = () => {
             Comprehensive study materials, lunch, and refreshments included.
           </motion.p>
 
+          {/* Countdown */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="mb-8"
+          >
+            <div className="text-center mb-3">
+              <motion.p 
+                className="text-lg sm:text-xl font-bold mb-3 text-foreground"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.7, duration: 0.6 }}
+              >
+                Next Workshop starts in:
+              </motion.p>
+              {nextWorkshop?.title && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                  className="inline-block"
+                >
+                  <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary font-semibold rounded-full border border-primary/20">
+                    <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                    {nextWorkshop.title}
+                  </span>
+                </motion.div>
+              )}
+            </div>
+            <div className="flex items-center justify-center gap-4 sm:gap-6">
+              {[
+                { label: "Days", value: days },
+                { label: "Hours", value: hours },
+                { label: "Minutes", value: minutes },
+                { label: "Seconds", value: seconds },
+              ].map((item, idx, arr) => (
+                <div key={item.label} className="flex items-center">
+                  <div className="text-center">
+                    <AnimatePresence mode="popLayout" initial={false}>
+                      <motion.div
+                        key={item.value}
+                        initial={{ rotateX: -90, opacity: 0, y: -8 }}
+                        animate={{ rotateX: 0, opacity: 1, y: 0 }}
+                        exit={{ rotateX: 90, opacity: 0, y: 8 }}
+                        transition={{ type: "spring", stiffness: 250, damping: 20 }}
+                        className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight tabular-nums"
+                      >
+                        {item.value}
+                      </motion.div>
+                    </AnimatePresence>
+                    <div className="mt-1 text-xs sm:text-sm text-muted-foreground uppercase tracking-wider">
+                      {item.label}
+                    </div>
+                  </div>
+                  {idx < arr.length - 1 && (
+                    <motion.span
+                      aria-hidden
+                      className="mx-3 sm:mx-4 text-primary/70 text-4xl sm:text-5xl font-bold animate-pulse"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: [0.6, 1, 0.6] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      :
+                    </motion.span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
 
           
           
@@ -86,8 +158,19 @@ const Hero = () => {
             onClick={scrollToForm}
             className="group relative inline-flex items-center gap-2 px-8 py-4 text-base sm:text-lg font-semibold text-primary-foreground bg-primary rounded-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
+            animate={{ 
+              opacity: 1, 
+              y: [0, -8, 0]
+            }}
+            transition={{ 
+              delay: 0.7, 
+              duration: 0.8,
+              y: {
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }
+            }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >

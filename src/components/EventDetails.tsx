@@ -65,8 +65,8 @@ const EventDetails = () => {
     {
       icon: MapPin,
       label: "Venue",
-      value: "Ernakulam",
-      subtitle: "Kerala",
+      value: "Vyttila Salafi Masjid",
+      subtitle: "Ernakulam",
     },
     {
       icon: Users,
